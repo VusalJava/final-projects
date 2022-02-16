@@ -1,0 +1,16 @@
+<dataset>
+    <item id="1" description="4K TV Samsa 5342se" discount="50" is_moderate_accept="0" is_moderated="0"
+          pretendent_to_be_deleted="0" name="Телевизор" price="39999.00" rating="4.5"/>
+    <item id="2" description="DVD плеер Yamaha" discount="15" is_moderate_accept="0" is_moderated="0"
+          pretendent_to_be_deleted="0" name="DVD плеер" price="1000.00" rating="3.5"/>
+    <item id="3" description="WIFI камера видеонаблюдения с поворотным механизмом" discount="10" is_moderate_accept="0"
+          is_moderated="1" pretendent_to_be_deleted="0" name="Камера Wi-Fi" price="8900.00" rating="3.9"/>
+    <item id="4" description="Регистратор видеонаблюдения Hiwatch DS-H208QA" discount="5" is_moderate_accept="1"
+          is_moderated="0" pretendent_to_be_deleted="0" name="Регистратор видеонаблюдения" price="7990.00"
+          rating="4.2"/>
+    <item id="5" description="Удобный и современный горный велосипед" discount="15" is_moderate_accept="0"
+          is_moderated="1" pretendent_to_be_deleted="0" name="Stels Navigator 730 MD 27.5 V010" price="19900.00"
+          rating="4.0"/>
+    <item id="6" description="Детский велосипед" discount="10" is_moderate_accept="0" is_moderated="1"
+          pretendent_to_be_deleted="0" name="Forward Cosmo 16" price="7800.00" rating="5.0"/>
+</dataset>

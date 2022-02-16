@@ -1,0 +1,5 @@
+<dataset>
+<shop id="1" description="Магазин с лучшими товарами и лучшей ценой на рынке." email="thebestmagaz@gmail.com" is_candidate_to_be_deleted="0" is_moderate_accept="0" is_moderated="0" moderated_reject_reason="" name="The Best Magazin" phone="89459005040" rating="4.0" location_id="1" logo_id="1" />
+<shop id="2" description="Видеонаблюдение, Wi-Fi камеры. Продажа, установка под ключ. Гарантия качества" email="proplus@yandex.ru" is_candidate_to_be_deleted="0" is_moderate_accept="1" is_moderated="1" moderated_reject_reason="" name="PRO+" phone="84321002344" rating="4.2" location_id="2" logo_id="7" />
+<shop id="3" description="Велосипеды на любой кошелек." email="bicycles.yandex.ru" is_candidate_to_be_deleted="0" is_moderate_accept="1" is_moderated="1" moderated_reject_reason="" name="Магазин велосипедов" phone="88341234971" rating="4.4" location_id="1" logo_id="14" />
+</dataset>
