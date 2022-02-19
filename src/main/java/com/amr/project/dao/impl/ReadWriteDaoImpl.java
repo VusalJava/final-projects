@@ -62,4 +62,6 @@ public class ReadWriteDaoImpl<T, K> implements ReadWriteDao<T, K> {
         return em.createQuery("select u from " + clazz.getName() + " u", clazz)
                 .getResultList();
     }
+
+
 }

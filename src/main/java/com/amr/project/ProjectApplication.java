@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.session.SessionAutoConfiguration;
 @SpringBootApplication(exclude = {SessionAutoConfiguration.class,
                                   SecurityAutoConfiguration.class})
 public class ProjectApplication {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(ProjectApplication.class, args);
     }
 }
