@@ -23,16 +23,15 @@ public class Shop {
     private String email;
     private String phone;
     private String description;
-
     private Long countryId;
 
     @OneToMany (mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Item> items;
 
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "logo_id")
     private Image logo;
+
     private int count;
     private double rating;
 

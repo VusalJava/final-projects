@@ -19,15 +19,11 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String dignity; //плюсы
-    private String flaw; //минусы
+    private String dignity;
+    private String flaw;
     private String text;
     private Date date;
     private int rating;
-
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user; // убрали связь с User, потому что считаем что не нужно редактировать  и  удалять отзыв
 
     private String nameUser;
 

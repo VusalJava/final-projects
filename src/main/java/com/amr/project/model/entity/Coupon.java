@@ -14,19 +14,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Coupon {
-    //TODO разовый скидочный купон для покупателя, добавить поля
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int sum; // + сумма
+    private int sum;
 
-    private int minOrder; // + минимальная стоимость корзины
+    private int minOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     private Long shopId;
-
 }

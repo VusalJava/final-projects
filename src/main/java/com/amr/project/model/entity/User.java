@@ -21,10 +21,6 @@ import java.util.List;
 @ToString(of = {"id", "email", "username", "password", "phone", "firstName", "lastName", "age", "gender"})
 @EqualsAndHashCode(of = {"id", "email", "username"})
 public class User implements UserDetails {
-    //TODO надо продумать юзера, слишком много у него связей,
-    // нужны-ли они, возможно где-то вместо связи с ентити использовать id,
-    // иначе есть вероятность попасть в констрейнты и не отстроить нормальную структуру
-    // для взаимодействия с БД
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -55,22 +51,22 @@ public class User implements UserDetails {
     private Image image;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Coupon> coupons; //onetomany bi-directional
+    private List<Coupon> coupons;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<CartItem> cart; // onetomany bi-directional
+    private List<CartItem> cart;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Order> orders; // onetomany bi-directional
+    private List<Order> orders;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Shop> shops; // onetomany bi-directional
+    private List<Shop> shops;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Favorite> favorites;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Discount> discounts; // onetomany bi-directional
+    private List<Discount> discounts;
 
     private boolean isUsingTwoFactorAuth;
     private String secret;

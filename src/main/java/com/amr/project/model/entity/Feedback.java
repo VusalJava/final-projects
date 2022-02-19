@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Feedback {
-    //TODO обратная связь от покупателей (книга жалоб и предложений :))
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +24,4 @@ public class Feedback {
     private String fullText;
     private LocalDateTime dateTime;
     private String username;
-
-
 }

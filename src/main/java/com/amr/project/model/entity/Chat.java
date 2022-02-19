@@ -22,16 +22,12 @@ public class Chat {
     @ManyToMany (fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
     @JoinTable(name = "chat_members", joinColumns = @JoinColumn(name = "chat_id"), inverseJoinColumns
             = @JoinColumn(name = "members_id"))
-    private List<User> members;  // что имеется ввиду под чатом?
+    private List<User> members;
 
     @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Message> messages;
 
-//    @Column(name = "hash")
-//    private Long hash;
-
     public Chat(List<User> members) {
         this.members = members;
-//        this.hash = members.stream().map(User::hashCode).mapToLong(e -> e).sum();
     }
 }

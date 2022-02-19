@@ -23,7 +23,6 @@ public class Item {
     private String name;
     private BigDecimal basePrice;
     private BigDecimal price;
-
     private Long categoryId;
 
     @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -34,7 +33,6 @@ public class Item {
     @OneToMany (mappedBy = "item" , cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-
     private int count;
     private double rating;
     private String description;
@@ -43,7 +41,6 @@ public class Item {
     @ManyToOne
     @JoinColumn (name = "shop_id")
     private Shop shop;
-
 
     private boolean isModerated = false;
     private String moderatedRejectReason;
