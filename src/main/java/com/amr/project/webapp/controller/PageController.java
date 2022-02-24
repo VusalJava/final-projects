@@ -9,6 +9,7 @@ import com.amr.project.service.abstracts.ItemReadWriteService;
 import com.amr.project.service.abstracts.ShopReadWriteService;
 import com.amr.project.service.abstracts.UserReadWriteService;
 import com.amr.project.service.impl.ReadWriteServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,34 +17,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@RequiredArgsConstructor
 @Controller
 public class PageController {
+    private final ItemReadWriteService itemService;
+    private final UserReadWriteService userService;
+    private final ShopReadWriteService shopService;
+    private final ReadWriteServiceImpl<Category, Long> categoryService;
 
-    private ItemReadWriteService itemService;
-    private UserReadWriteService userService;
-    private ShopReadWriteService shopService;
-    private ReadWriteServiceImpl<Category, Long> categoryService;
-
-    private ShopMapper shopMapper;
-    private ItemMapper itemMapper;
-    private UserMapper userMapper;
-    private CategoryMapper categoryMapper;
-
-
-    @Autowired
-    public PageController(ItemReadWriteService itemService, UserReadWriteService userService,
-                          ShopReadWriteService shopService, ShopMapper shopMapper, ItemMapper itemMapper,
-                          UserMapper userMapper, ReadWriteServiceImpl<Category, Long> categoryService,
-                          CategoryMapper categoryMapper) {
-        this.itemService = itemService;
-        this.userService = userService;
-        this.shopService = shopService;
-        this.categoryService = categoryService;
-        this.shopMapper = shopMapper;
-        this.itemMapper = itemMapper;
-        this.userMapper = userMapper;
-        this.categoryMapper = categoryMapper;
-    }
+    private final ShopMapper shopMapper;
+    private final ItemMapper itemMapper;
+    private final UserMapper userMapper;
+    private final CategoryMapper categoryMapper;
 
     @GetMapping("/")
     public String mainPage(Model model, Authentication authentication) {
