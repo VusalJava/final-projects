@@ -15,6 +15,8 @@ public interface ItemMapper {
 
     ItemMapper INSTANCE = Mappers.getMapper(ItemMapper.class);
 
+    ItemDto toDto(Item item);
+
     @Named("dtoForMainPage")
     @Mapping(target = "shop", qualifiedByName = "clearShop")
     ItemDto toDtoWithoutShopDetails(Item item);
