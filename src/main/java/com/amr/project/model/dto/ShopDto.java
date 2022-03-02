@@ -17,11 +17,11 @@ public class ShopDto {
     private String description;
     private Long countryId;
     private List<ItemDto> items;
-    private Image logo;
+    private ImageDto logo;
     private int count;
     private double rating;
     private UserDto user;
-    private List<Discount> discounts;
+    private List<DiscountDto> discounts;
     private boolean isModerated;
     private boolean isModerateAccept;
     private String moderatedRejectReason;

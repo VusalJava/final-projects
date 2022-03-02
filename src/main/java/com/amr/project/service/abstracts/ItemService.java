@@ -5,7 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
-public interface ItemReadWriteService extends ReadWriteService<Item, Long> {
+public interface ItemService extends ReadWriteService<Item, Long> {
     List<Item> getMostPopularItems(int count);
 
     @Override

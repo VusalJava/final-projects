@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryReadWriteServiceImpl extends ReadWriteServiceImpl<Category, Long> {
+public class CategoryServiceImpl extends ReadWriteServiceImpl<Category, Long> {
     @Autowired
-    public CategoryReadWriteServiceImpl(ReadWriteDao<Category, Long> dao) {
+    public CategoryServiceImpl(ReadWriteDao<Category, Long> dao) {
         super(dao);
     }
 }

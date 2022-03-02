@@ -5,7 +5,9 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class CategoryDto {
+public class FavoriteDto {
     private Long id;
-    private String name;
+    private Long itemId;
+    private Long shopId;
+    private UserDto user;
 }

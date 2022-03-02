@@ -2,19 +2,19 @@ package com.amr.project.service.impl;
 
 import com.amr.project.dao.abstracts.ShopReadWriteDao;
 import com.amr.project.model.entity.Shop;
-import com.amr.project.service.abstracts.ShopReadWriteService;
+import com.amr.project.service.abstracts.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ShopReadWriteServiceImpl extends ReadWriteServiceImpl<Shop, Long> implements ShopReadWriteService  {
+public class ShopServiceImpl extends ReadWriteServiceImpl<Shop, Long> implements ShopService {
 
     public ShopReadWriteDao dao;
 
     @Autowired
-    public ShopReadWriteServiceImpl(ShopReadWriteDao dao) {
+    public ShopServiceImpl(ShopReadWriteDao dao) {
         super(dao);
         this.dao = dao;
     }

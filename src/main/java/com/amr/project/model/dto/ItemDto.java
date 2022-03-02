@@ -1,7 +1,5 @@
 package com.amr.project.model.dto;
 
-import com.amr.project.model.entity.Image;
-import com.amr.project.model.entity.Review;
 import lombok.Data;
 import lombok.ToString;
 
@@ -16,8 +14,8 @@ public class ItemDto {
     private BigDecimal basePrice;
     private BigDecimal price;
     private Long categoryId;
-    private List<Image> images;
-    private List<Review> reviews;
+    private List<ImageDto> imagesDto;
+    private List<ReviewDto> reviewsDto;
     private int count;
     private double rating;
     private String description;

@@ -5,7 +5,8 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class CategoryDto {
+public class ImageDto {
     private Long id;
-    private String name;
+    private byte[] picture;
+    private Boolean isMain;
 }

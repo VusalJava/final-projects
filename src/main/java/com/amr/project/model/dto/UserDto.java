@@ -22,17 +22,17 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private int age;
-    private List<Address> address;
+    private List<AddressDto> address;
     private Role role;
     private Gender gender;
     private Calendar birthday;
-    private Image image;
-    private List<Coupon> coupons;
-    private List<CartItem> cart;
-    private List<Order> orders;
+    private ImageDto image;
+    private List<CouponDto> coupons;
+    private List<CartItemDto> cart;
+    private List<OrderDto> orders;
     private List<ShopDto> shops;
-    private List<Favorite> favorites;
-    private List<Discount> discounts;
+    private List<FavoriteDto> favorites;
+    private List<DiscountDto> discounts;
     private boolean isUsingTwoFactorAuth;
     private String secret;
 }

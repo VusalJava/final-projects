@@ -5,12 +5,11 @@ import com.amr.project.converter.ItemMapper;
 import com.amr.project.converter.ShopMapper;
 import com.amr.project.converter.UserMapper;
 import com.amr.project.model.entity.Category;
-import com.amr.project.service.abstracts.ItemReadWriteService;
-import com.amr.project.service.abstracts.ShopReadWriteService;
-import com.amr.project.service.abstracts.UserReadWriteService;
+import com.amr.project.service.abstracts.ItemService;
+import com.amr.project.service.abstracts.ShopService;
+import com.amr.project.service.abstracts.UserService;
 import com.amr.project.service.impl.ReadWriteServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -20,9 +19,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 @Controller
 public class PageController {
-    private final ItemReadWriteService itemService;
-    private final UserReadWriteService userService;
-    private final ShopReadWriteService shopService;
+    private final ItemService itemService;
+    private final UserService userService;
+    private final ShopService shopService;
     private final ReadWriteServiceImpl<Category, Long> categoryService;
 
     private final ShopMapper shopMapper;

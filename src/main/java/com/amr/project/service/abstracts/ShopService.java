@@ -4,6 +4,6 @@ import com.amr.project.model.entity.Shop;
 
 import java.util.List;
 
-public interface ShopReadWriteService extends ReadWriteService<Shop, Long> {
+public interface ShopService extends ReadWriteService<Shop, Long> {
     List<Shop> getMostPopularShops(int count);
 }

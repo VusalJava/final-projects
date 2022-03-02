@@ -7,11 +7,9 @@ import com.amr.project.model.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", uses = {ItemMapper.class, UserMapper.class})
 public interface ShopMapper {
-    ShopMapper INSTANCE = Mappers.getMapper(ShopMapper.class);
 
     @Mapping(target = "items", ignore = true)
     @Mapping(target = "user", qualifiedByName = "clearUser")
