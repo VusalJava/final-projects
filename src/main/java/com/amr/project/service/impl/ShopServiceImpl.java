@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class ShopServiceImpl extends ReadWriteServiceImpl<Shop, Long> implements ShopService {
 
-    public ShopReadWriteDao dao;
+    public final ShopReadWriteDao dao;
 
     @Autowired
     public ShopServiceImpl(ShopReadWriteDao dao) {

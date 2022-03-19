@@ -1,23 +1,12 @@
 package com.amr.project.converter;
 
-import com.amr.project.model.dto.ShopDto;
 import com.amr.project.model.dto.UserDto;
-import com.amr.project.model.entity.Shop;
 import com.amr.project.model.entity.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 
-@Mapper(componentModel = "spring", uses = {ShopMapper.class})
-public interface UserMapper {
-
-    @Mapping(target = "password", ignore = true)
-    @Mapping(target = "shops", qualifiedByName = "clearShop")
-    UserDto toDto(User user);
-    Iterable<UserDto> toDto(Iterable<User> user);
-
-    @Named("clearShop")
-    @Mapping(target = "user", ignore = true)
-    @Mapping(target = "items", ignore = true)
-    ShopDto toDto(Shop shop);
+@Mapper(componentModel = "spring", uses = {OrderMapper.class, FavoriteMapper.class,
+        ImageMapper.class, CountryMapper.class, CartItemMapper.class, ShopMapper.class,
+        DiscountMapper.class, MessageMapper.class, ChatMapper.class, FeedbackMapper.class,
+        ReviewMapper.class, UserInfoMapper.class, FavoriteMapper.class, AddressMapper.class})
+public interface UserMapper extends MapperInterface<UserDto, User> {
 }

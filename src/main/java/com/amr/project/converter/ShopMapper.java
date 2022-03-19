@@ -1,22 +1,14 @@
 package com.amr.project.converter;
 
 import com.amr.project.model.dto.ShopDto;
-import com.amr.project.model.dto.UserDto;
 import com.amr.project.model.entity.Shop;
-import com.amr.project.model.entity.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 
-@Mapper(componentModel = "spring", uses = {ItemMapper.class, UserMapper.class})
-public interface ShopMapper {
+import java.util.List;
 
-    @Mapping(target = "items", ignore = true)
-    @Mapping(target = "user", qualifiedByName = "clearUser")
-    ShopDto toDto(Shop shop);
-    Iterable<ShopDto> toDto(Iterable<Shop> shop);
+@Mapper(componentModel = "spring", uses = {CountryMapper.class, ImageMapper.class,
+        UserMapper.class, CartItemMapper.class, CouponMapper.class, ItemMapper.class,
+        AddressMapper.class, FeedbackMapper.class, DiscountMapper.class, FavoriteMapper.class, ReviewMapper.class})
+public interface ShopMapper extends MapperInterface<ShopDto, Shop> {
 
-    @Named("clearUser")
-    @Mapping(target = "shops", ignore = true)
-    UserDto toDto(User user);
 }

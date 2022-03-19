@@ -1,14 +1,16 @@
 package com.amr.project.model.dto;
 
-import com.amr.project.model.entity.Discount;
-import com.amr.project.model.entity.Image;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
-@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ShopDto {
     private Long id;
     private String name;
@@ -26,5 +28,4 @@ public class ShopDto {
     private boolean isModerateAccept;
     private String moderatedRejectReason;
     private boolean isPretendentToBeDeleted;
-
 }

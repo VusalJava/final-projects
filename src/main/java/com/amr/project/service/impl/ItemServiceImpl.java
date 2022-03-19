@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class ItemServiceImpl extends ReadWriteServiceImpl<Item, Long> implements ItemService {
 
-    public ItemReadWriteDao itemDao;
+    public final ItemReadWriteDao itemDao;
 
     @Autowired
     public ItemServiceImpl(ItemReadWriteDao dao) {

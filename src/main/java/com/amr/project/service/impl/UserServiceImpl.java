@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements UserService {
 
-    public UserReadWriteDao userDao;
+    public final UserReadWriteDao userDao;
 
     @Autowired
     public UserServiceImpl(UserReadWriteDao dao) {
