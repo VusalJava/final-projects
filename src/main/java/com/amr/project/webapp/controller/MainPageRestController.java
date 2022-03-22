@@ -9,15 +9,15 @@ import com.amr.project.model.entity.Category;
 import com.amr.project.service.abstracts.ItemService;
 import com.amr.project.service.abstracts.ShopService;
 import com.amr.project.service.abstracts.UserService;
-import com.amr.project.service.impl.CategoryServiceImpl;
 import com.amr.project.service.impl.ReadWriteServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.security.Principal;
 import java.util.List;
 
@@ -35,12 +35,14 @@ public class MainPageRestController {
     private final CategoryMapper categoryMapper;
 
     @GetMapping("/")
-    public ResponseEntity<MainPageDto> mainPage(Principal principal) {
+    public ResponseEntity<MainPageDto> mainPage(Principal principal,
+                                                @NotNull @RequestParam(value = "items") int itemsNum,
+                                                @NotNull @RequestParam(value = "shops") int shopsNum) {
         MainPageDto mainPageDto = MainPageDto.builder()
                 .user((principal != null) ?
                         userMapper.toDto(userService.getUserByUsername(principal.getName())) : null)
-                .popularItems((List) itemMapper.toDtoList(itemService.getMostPopularItems(5)))
-                .popularShops((List) shopMapper.toDtoList(shopService.getMostPopularShops(7)))
+                .popularItems((List) itemMapper.toDtoList(itemService.getMostPopularItems(itemsNum)))
+                .popularShops((List) shopMapper.toDtoList(shopService.getMostPopularShops(shopsNum)))
                 .categories(categoryMapper.toDtoList(categoryService.findAll())).build();
         return new ResponseEntity<>(mainPageDto, HttpStatus.OK);
     }
