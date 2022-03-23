@@ -23,4 +23,9 @@ public class ItemServiceImpl extends ReadWriteServiceImpl<Item, Long> implements
     public List<Item> getMostPopularItems(int count) {
         return itemDao.getMostPopularItems(count);
     }
+
+    @Override
+    public List<Item> getItemByFoundName(String name) {
+        return itemDao.getItemByFoundName(name);
+    }
 }

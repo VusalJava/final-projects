@@ -12,4 +12,10 @@ public class ItemReadWriteDaoImpl extends ReadWriteDaoImpl<Item, Long> implement
     public List<Item> getMostPopularItems(int count) {
         return em.createQuery("select i from Item i order by i.rating desc", Item.class).setMaxResults(count).getResultList();
     }
+
+    @Override
+    public List<Item> getItemByFoundName(String name) {
+        return em.createQuery("select i from Item i where i.name = ?1", Item.class)
+                .setParameter(1, name).getResultList();
+    }
 }

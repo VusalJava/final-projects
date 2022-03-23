@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ItemService extends ReadWriteService<Item, Long> {
     List<Item> getMostPopularItems(int count);
+    List<Item> getItemByFoundName(String name);
 
     @Override
     @PreAuthorize("hasRole('ROLE_ADMIN')")
