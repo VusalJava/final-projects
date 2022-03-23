@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ShopReadWriteDao extends ReadWriteDao<Shop, Long> {
     List<Shop> getMostPopularShops(int count);
+    List<Shop> getShopByFoundName(String name);
 }

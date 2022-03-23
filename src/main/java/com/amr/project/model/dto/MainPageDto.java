@@ -9,7 +9,9 @@ import java.util.List;
 @Builder
 public class MainPageDto {
     private UserDto user;
-    private List<ItemDto> popularItems;
-    private List<ShopDto> popularShops;
+    private List<ItemDto> itemDtoList;
+    private List<ShopDto> shopDtoList;
+    private int itemCount;
+    private int shopCount;
     private List<CategoryDto> categories;
 }
