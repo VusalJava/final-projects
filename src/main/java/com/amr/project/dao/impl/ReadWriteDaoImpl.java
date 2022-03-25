@@ -1,6 +1,7 @@
 package com.amr.project.dao.impl;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
+import com.amr.project.exception.Util;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -78,7 +79,8 @@ public class ReadWriteDaoImpl<T, K> implements ReadWriteDao<T, K> {
         List<T> pagesList = query.getResultList();
 
         Query queryCount = em.createQuery("select count(u.id) from " + clazz.getName() + " u");
-        Long count = (Long) queryCount.getSingleResult();
+//        Long count = (Long) queryCount.getSingleResult();
+        Long count = (Long) Util.getUniqueResult(queryCount);
 
         return new PageImpl<>(pagesList, pageable, count);
     }
