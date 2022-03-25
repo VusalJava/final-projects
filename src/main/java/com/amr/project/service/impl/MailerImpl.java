@@ -7,6 +7,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import javax.annotation.PostConstruct;
+
 @Validated
 @Service
 public class MailerImpl implements Mailer {
