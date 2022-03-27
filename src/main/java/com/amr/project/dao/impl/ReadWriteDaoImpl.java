@@ -1,6 +1,7 @@
 package com.amr.project.dao.impl;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
+import com.amr.project.model.entity.Order;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
