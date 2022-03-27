@@ -2,6 +2,7 @@ package com.amr.project.service.impl;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
 import com.amr.project.model.entity.Order;
+import com.amr.project.model.enums.*;
 import com.amr.project.service.abstracts.*;
 import com.qiwi.billpayments.sdk.client.BillPaymentClient;
 import com.qiwi.billpayments.sdk.client.BillPaymentClientFactory;
@@ -29,10 +30,31 @@ public class PaymentServiceImpl implements PaymentService {
         this.orderService = orderService;
     }
 
+    void updateOrderStatusValue(BillResponse response,Long orderId) {
+        Order order = orderService.getOrderById(orderId);
+        switch (response.getStatus().getValue().getValue()) {
+            case "WAITING":
+                order.setStatus(Status.WAITING);
+                break;
+            case "PAID":
+                order.setStatus(Status.PAID);
+                break;
+            case "REJECTED":
+                order.setStatus(Status.REJECTED);
+                break;
+            case "EXPIRED":
+                order.setStatus(Status.EXPIRED);
+                order.setBuyerName("Aleksandr");
+                break;
+        }
+        orderService.update(order);
+    }
+
     public String getKiwiAuthUrl(Long orderId) throws URISyntaxException {
         final String secretKey = "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9z" +
                 "aXRlX3VpZCI6InhpaG03eS0wMCIsInVzZXJfaWQiOiI3OTk5MDk1NDcxNSIsInNlY3JldCI6I" +
                 "jliZjE2MjhiZTE2ZGMxOTcxYzA5ZThmMzQ2YzgyZWM3MjE3YzQ3OTVlMWM3MjFlYjc1MmE2YjY2ZDI1NGIwM2UifX0=";
+
 
         BigDecimal totalOrderPrice = orderService.getOrderById(orderId).getTotal();
 
@@ -49,7 +71,7 @@ public class PaymentServiceImpl implements PaymentService {
                         Currency.getInstance("RUB")
                 ),
                 "Тестовый платеж",
-                ZonedDateTime.now().plusSeconds(600),
+                ZonedDateTime.now().plusMinutes(300),
                 new Customer(
                         "vladimir789789@gmail.com",
                         orderId.toString(),
@@ -60,7 +82,13 @@ public class PaymentServiceImpl implements PaymentService {
 
 
         BillResponse response = client.createBill(billInfo);
-        System.out.println(response);
+
+        // Обновляем статус поля status в таблице orders значением , полученным от Kiwi
+        updateOrderStatusValue(response,orderId);
+        BillResponse response1 = client.cancelBill(orderId.toString());
+        System.out.println(response1);
+        System.out.println(orderService.getOrderById(orderId).getStatus());
+
 
         return response.getPayUrl();
     }

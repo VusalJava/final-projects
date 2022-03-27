@@ -27,29 +27,28 @@ import java.util.*;
 @RequestMapping("/payment")
 public class PaymentRestController {
 
-    @Autowired
     private final PaymentService paymentService;
 
     @GetMapping("/kiwi")
     void getKiwiAuthUrl(HttpServletResponse response) throws URISyntaxException, IOException {
 
-        String authURL =  paymentService.getKiwiAuthUrl(1L);
+        String authURL =  paymentService.getKiwiAuthUrl(4L);
 
         response.sendRedirect(authURL);
     }
 
     @GetMapping("/status")
-    BillResponse getKiwiOrderStatus()  {
+    String getKiwiOrderStatus()  {
         final String secretKey = "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9z" +
                 "aXRlX3VpZCI6InhpaG03eS0wMCIsInVzZXJfaWQiOiI3OTk5MDk1NDcxNSIsInNlY3JldCI6I" +
                 "jliZjE2MjhiZTE2ZGMxOTcxYzA5ZThmMzQ2YzgyZWM3MjE3YzQ3OTVlMWM3MjFlYjc1MmE2YjY2ZDI1NGIwM2UifX0=";
-        String billId = "1";
+        String billId = "4";
         BillPaymentClient client = BillPaymentClientFactory.createCustom(
                 secretKey,
                 new ApacheWebClient(HttpClients.createDefault())
         );
         BillResponse response = client.getBillInfo(billId);
-        System.out.println(response);
-        return response;
+
+        return response.getStatus().getValue().getValue();
     }
 }
