@@ -23,4 +23,9 @@ public class ShopServiceImpl extends ReadWriteServiceImpl<Shop, Long> implements
     public List<Shop> getMostPopularShops(int count) {
         return dao.getMostPopularShops(count);
     }
+
+    @Override
+    public List<Shop> getShopByFoundName(String name) {
+        return dao.getShopByFoundName(name);
+    }
 }

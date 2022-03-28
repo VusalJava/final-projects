@@ -12,4 +12,10 @@ public class ShopReadWriteDaoImpl extends ReadWriteDaoImpl<Shop, Long> implement
     public List<Shop> getMostPopularShops(int count) {
         return em.createQuery("select i from Shop i order by i.rating desc", Shop.class).setMaxResults(count).getResultList();
     }
+
+    @Override
+    public List<Shop> getShopByFoundName(String name) {
+        return em.createQuery("select i from Shop i where i.name = ?1", Shop.class)
+                .setParameter(1, name).getResultList();
+    }
 }

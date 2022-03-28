@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ItemReadWriteDao extends ReadWriteDao<Item, Long> {
     List<Item> getMostPopularItems(int count);
+    List<Item> getItemByFoundName(String name);
 }
