@@ -80,9 +80,9 @@ public class ReadWriteDaoImpl<T, K> implements ReadWriteDao<T, K> {
         List<T> pagesList = query.getResultList();
 
         TypedQuery<Long> queryCount = em.createQuery("select count(u.id) from " + clazz.getName() + " u", Long.class);
-        Object count = Util.handlerSingleResult(queryCount);
+        Long count = Util.handlerSingleResult(queryCount);
         if(count != null) {
-            return new PageImpl<>(pagesList, pageable, (long) count);
+            return new PageImpl<>(pagesList, pageable, count);
         } else return null;
     }
 }
