@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -78,7 +79,7 @@ public class ReadWriteDaoImpl<T, K> implements ReadWriteDao<T, K> {
         query.setMaxResults(pageSize);
         List<T> pagesList = query.getResultList();
 
-        Query queryCount = em.createQuery("select count(u.id) from " + clazz.getName() + " u");
+        TypedQuery<Long> queryCount = em.createQuery("select count(u.id) from " + clazz.getName() + " u", Long.class);
         Object count = Util.handlerSingleResult(queryCount);
         if(count != null) {
             return new PageImpl<>(pagesList, pageable, (long) count);
