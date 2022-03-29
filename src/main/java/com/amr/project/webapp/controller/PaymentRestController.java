@@ -1,54 +1,40 @@
 package com.amr.project.webapp.controller;
 
-import com.amr.project.service.abstracts.*;
-import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.databind.*;
-import com.qiwi.billpayments.sdk.client.*;
-import com.qiwi.billpayments.sdk.model.*;
-import com.qiwi.billpayments.sdk.model.out.*;
-import com.qiwi.billpayments.sdk.utils.*;
-import com.qiwi.billpayments.sdk.web.*;
+import com.amr.project.service.abstracts.PaymentService;
+import com.qiwi.billpayments.sdk.model.out.BillResponse;
 import lombok.AllArgsConstructor;
-import org.apache.http.impl.client.*;
-import org.apache.tomcat.util.json.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.*;
-import org.springframework.web.bind.annotation.*;
-import springfox.documentation.spring.web.json.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.*;
 
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/payment")
+@RequestMapping("/payment/kiwi")
 public class PaymentRestController {
 
     private final PaymentService paymentService;
 
-    @GetMapping("/kiwi")
-    void getKiwiAuthUrl(HttpServletResponse response) throws URISyntaxException, IOException {
+//  User инициирует оплату с Kiwi, метод получает c front id user-а, как результат редиректит user-а на полученный от Kiwi URL для оплаты
+    @PostMapping("")
+    void getKiwiAuthUrl(HttpServletResponse response,@RequestBody Long id) throws IOException, URISyntaxException {
 
-        String authURL =  paymentService.getKiwiAuthUrl(4L);
+        String authURL = paymentService.getKiwiAuthUrl(id);
 
         response.sendRedirect(authURL);
     }
 
-    @GetMapping("/status")
-    String getKiwiOrderStatus()  {
-        final String secretKey = "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9z" +
-                "aXRlX3VpZCI6InhpaG03eS0wMCIsInVzZXJfaWQiOiI3OTk5MDk1NDcxNSIsInNlY3JldCI6I" +
-                "jliZjE2MjhiZTE2ZGMxOTcxYzA5ZThmMzQ2YzgyZWM3MjE3YzQ3OTVlMWM3MjFlYjc1MmE2YjY2ZDI1NGIwM2UifX0=";
-        String billId = "4";
-        BillPaymentClient client = BillPaymentClientFactory.createCustom(
-                secretKey,
-                new ApacheWebClient(HttpClients.createDefault())
-        );
-        BillResponse response = client.getBillInfo(billId);
 
-        return response.getStatus().getValue().getValue();
+    //  Слушает уведомления от Kiwi по статусам заказов, и инициирует обновление статуса заказа в таблице orders
+    @PostMapping("/status")
+    void getKiwiOrderStatus(@RequestBody BillResponse response) {
+
+        paymentService.updateOrderStatusValue(response);
+        paymentService.sendPaymentStatusByEmail(response);
     }
 }
