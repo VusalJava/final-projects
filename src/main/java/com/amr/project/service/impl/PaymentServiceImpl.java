@@ -93,7 +93,7 @@ public class PaymentServiceImpl implements PaymentService {
     //  Отправка заказа на QIWI Api
     public String getKiwiAuthUrl(Long orderId) throws URISyntaxException {
 
-        final String secretKey = "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9z" +
+        final String secretKey = "syJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9z" +
                 "aXRlX3VpZCI6InhpaG03eS0wMCIsInVzZXJfaWQiOiI3OTk5MDk1NDcxNSIsInNlY3JldCI6I" +
                 "jliZjE2MjhiZTE2ZGMxOTcxYzA5ZThmMzQ2YzgyZWM3MjE3YzQ3OTVlMWM3MjFlYjc1MmE2Yj" +
                 "Y2ZDI1NGIwM2UifX0=";
