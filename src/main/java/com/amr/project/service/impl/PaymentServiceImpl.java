@@ -78,13 +78,6 @@ public class PaymentServiceImpl implements PaymentService {
             case "PAID":
                 order.setStatus(Status.PAID);
                 break;
-            case "REJECTED":
-                order.setStatus(Status.REJECTED);
-                break;
-            case "EXPIRED":
-                order.setStatus(Status.EXPIRED);
-                order.setBuyerName("Aleksandr");
-                break;
         }
         orderService.update(order);
     }

@@ -6,7 +6,5 @@ public enum Status {
     WAITING,
     PAID,
     SENT,
-    DELIVERED,
-    REJECTED,
-    EXPIRED
+    DELIVERED
 }
