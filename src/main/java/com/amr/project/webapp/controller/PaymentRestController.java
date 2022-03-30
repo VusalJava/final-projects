@@ -15,13 +15,13 @@ import java.net.URISyntaxException;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/payment/kiwi")
+@RequestMapping("/payment")
 public class PaymentRestController {
 
     private final PaymentService paymentService;
 
 //  User инициирует оплату с Kiwi, метод получает c front id user-а, как результат редиректит user-а на полученный от Kiwi URL для оплаты
-    @PostMapping("")
+    @PostMapping("/kiwi")
     void getKiwiAuthUrl(HttpServletResponse response,@RequestBody Long id) throws IOException, URISyntaxException {
 
         String authURL = paymentService.getKiwiAuthUrl(id);
@@ -31,7 +31,7 @@ public class PaymentRestController {
 
 
     //  Слушает уведомления от Kiwi по статусам заказов, и инициирует обновление статуса заказа в таблице orders
-    @PostMapping("/status")
+    @PostMapping("/kiwi/status")
     void getKiwiOrderStatus(@RequestBody BillResponse response) {
 
         paymentService.updateOrderStatusValue(response);

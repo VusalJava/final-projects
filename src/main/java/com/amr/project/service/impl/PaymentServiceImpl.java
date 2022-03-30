@@ -2,6 +2,7 @@ package com.amr.project.service.impl;
 
 import com.amr.project.model.entity.Order;
 import com.amr.project.model.enums.Status;
+import com.amr.project.service.abstracts.ItemService;
 import com.amr.project.service.abstracts.Mailer;
 import com.amr.project.service.abstracts.OrderService;
 import com.amr.project.service.abstracts.PaymentService;
@@ -26,31 +27,43 @@ public class PaymentServiceImpl implements PaymentService {
 
     private OrderService orderService;
     private Mailer mailer;
+    private ItemService itemService;
 
-    public PaymentServiceImpl(OrderService orderService, Mailer mailer) {
+
+    public PaymentServiceImpl(OrderService orderService, Mailer mailer, ItemService itemService) {
         this.orderService = orderService;
         this.mailer = mailer;
+        this.itemService = itemService;
     }
 
     //Посылка писем  об оплате покупателю и продавцу
     public void sendPaymentStatusByEmail(BillResponse response) {
         Order order = orderService.getOrderById(Long.valueOf(response.getBillId()));
-        String email = order.getUser().getEmail();
+        String buyerEmail = order.getUser().getEmail();
+        String sellerEmail = itemService.findById(order.getItemsId().get(0)).getShop().getEmail();
         String subject = "KIWI оплата";
         String text;
         String billId = String.valueOf(order.getId());
         String billTotal = String.valueOf(order.getTotal());
-//        Если оплата прошла успешно
+    //Если оплата прошла успешно
         if (response.getStatus().getValue().getValue().equals("PAID")) {
-            //письмо покупателю
             text = "Успешно оплачен заказ №" + billId + " на сумму: " + billTotal;
-            mailer.sendMail(email, subject, text);
-            //письмо продавцу (Непонятно, где в таблице orders или связанной с ней User брать продавца?)
-        } else if (response.getStatus().getValue().getValue().equals("REJECTED")) {
+
             //письмо покупателю
+            mailer.sendMail(buyerEmail, subject, text);
+
+            //письмо продавцу
+            mailer.sendMail(sellerEmail, subject, text);
+
+        } else if (response.getStatus().getValue().getValue().equals("REJECTED")) {
             text = "Отклонена оплата по заказу №" + billId + " на сумму: " + billTotal;
-            mailer.sendMail(email, subject, text);
-            //письмо продавцу (Непонятно, где в таблице orders или связанной с ней User брать продавца?)
+
+            //письмо покупателю
+            mailer.sendMail(buyerEmail, subject, text);
+
+            //письмо продавцу
+            mailer.sendMail(sellerEmail, subject, text);
+
         }
     }
 
