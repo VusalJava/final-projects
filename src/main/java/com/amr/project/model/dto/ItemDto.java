@@ -24,7 +24,7 @@ public class ItemDto {
     private double rating;
     private String description;
     private int discount;
-    private ShopDto shop;
+    private long shopId;
     private boolean isModerated;
     private String moderatedRejectReason;
     private boolean isPretendedToBeDeleted;

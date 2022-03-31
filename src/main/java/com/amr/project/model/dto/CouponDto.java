@@ -9,6 +9,6 @@ public class CouponDto {
     private Long id;
     private int sum;
     private int minOrder;
-    private UserDto user;
+    private Long userId;
     private Long shopId;
 }

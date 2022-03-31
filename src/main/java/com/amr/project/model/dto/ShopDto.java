@@ -22,7 +22,7 @@ public class ShopDto {
     private ImageDto logo;
     private int count;
     private double rating;
-    private UserDto user;
+    private Long userId;
     private List<DiscountDto> discounts;
     private boolean isModerated;
     private boolean isModerateAccept;

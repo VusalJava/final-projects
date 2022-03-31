@@ -10,6 +10,6 @@ import java.util.List;
 public class CityDto {
     private Long id;
     private String name;
-    private CountryDto country;
+    private Long countryId;
     private List<AddressDto> addresses;
 }
