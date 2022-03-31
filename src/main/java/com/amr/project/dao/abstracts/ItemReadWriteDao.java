@@ -12,3 +12,4 @@ public interface ItemReadWriteDao extends ReadWriteDao<Item, Long> {
 
     List<Item> getItemsByShop(Shop shop);
 }
+
