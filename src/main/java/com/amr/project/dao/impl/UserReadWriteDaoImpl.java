@@ -9,4 +9,5 @@ public class UserReadWriteDaoImpl extends ReadWriteDaoImpl<User, Long> implement
     public User getUserByUsername(String name) {
         return em.createQuery("select u from User u where u.username = :name", User.class).setParameter("name", name).getSingleResult();
     }
+
 }
