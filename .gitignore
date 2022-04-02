@@ -23,6 +23,10 @@ src/test/resources/datasets/shops.xml
 *.iml
 *.ipr
 
+### Google Drive ###
+.tmp.drivedownload
+.tmp.driveupload
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -42,3 +46,4 @@ build/
 
 ### properties ###
 !**/main/resources/application.properties
+/.tmp.driveupload/

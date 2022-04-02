@@ -21,4 +21,5 @@ public class UserServiceImpl extends ReadWriteServiceImpl<User, Long> implements
     public User getUserByUsername(String name) {
         return userDao.getUserByUsername(name);
     }
+
 }
