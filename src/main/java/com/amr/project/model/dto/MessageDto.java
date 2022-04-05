@@ -17,5 +17,5 @@ public class MessageDto {
     private String textMessage;
     private boolean viewed;
     private UserDto user;
-    private ChatDto chat;
+    private Long chatId;
 }

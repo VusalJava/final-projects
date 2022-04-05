@@ -8,6 +8,6 @@ import lombok.ToString;
 public class CartItemDto {
     private Long id;
     private int quantity;
-    private UserDto user;
+    private Long userId;
     private ItemDto item;
 }

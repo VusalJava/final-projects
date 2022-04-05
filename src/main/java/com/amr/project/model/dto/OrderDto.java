@@ -17,7 +17,7 @@ public class OrderDto {
     private Status status;
     private Long address;
     private BigDecimal total;
-    private UserDto user;
+    private Long userId;
     private String buyerName;
     private String buyerPhone;
 }

@@ -8,8 +8,8 @@ import lombok.ToString;
 public class AddressDto {
     private Long id;
     private String cityIndex;
-    private CityDto city;
+    private Long cityId;
     private String street;
     private String house;
-    private UserDto user;
+    private Long userId;
 }

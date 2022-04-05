@@ -14,7 +14,7 @@ public class ReviewDto {
     private Date date;
     private int rating;
     private String nameUser;
-    private ItemDto item;
+    private Long itemId;
     private boolean isModerated;
     private boolean isModerateAccept;
     private String moderatedRejectReason;

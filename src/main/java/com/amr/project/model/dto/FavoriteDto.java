@@ -9,5 +9,5 @@ public class FavoriteDto {
     private Long id;
     private Long itemId;
     private Long shopId;
-    private UserDto user;
+    private Long userId;
 }
