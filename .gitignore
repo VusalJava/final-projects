@@ -20,6 +20,10 @@ logs
 *.iml
 *.ipr
 
+### Google Drive ###
+.tmp.drivedownload
+.tmp.driveupload
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -39,3 +43,4 @@ build/
 
 ### properties ###
 !**/main/resources/application.properties
+/.tmp.driveupload/
