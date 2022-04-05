@@ -40,10 +40,10 @@ public class MainPageRestController {
 
     @GetMapping("/")
     public ResponseEntity<MainPageDto> mainPage(Principal principal,
-                                                @NotNull @RequestParam int itemNumber,
-                                                @NotNull @RequestParam int itemSize,
-                                                @NotNull @RequestParam int shopNumber,
-                                                @NotNull @RequestParam int shopSize) {
+                                                @NotNull @RequestParam(defaultValue = "0") int itemNumber,
+                                                @NotNull @RequestParam(defaultValue = "10") int itemSize,
+                                                @NotNull @RequestParam(defaultValue = "0") int shopNumber,
+                                                @NotNull @RequestParam(defaultValue = "10") int shopSize) {
         Page<Item> itemPage = itemService.getPagination(PageRequest.of(itemNumber, itemSize));
         Page<Shop> shopPage = shopService.getPagination(PageRequest.of(shopNumber, shopSize));
         MainPageDto mainPageDto = MainPageDto.builder()
