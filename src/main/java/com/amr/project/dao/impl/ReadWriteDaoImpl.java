@@ -1,13 +1,9 @@
 package com.amr.project.dao.impl;
 
 import com.amr.project.dao.abstracts.ReadWriteDao;
-
-import com.amr.project.model.entity.Order;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +23,7 @@ public class ReadWriteDaoImpl<T, K> implements ReadWriteDao<T, K> {
                 .getGenericSuperclass())
                 .getActualTypeArguments()[0];
     }
+
 
     @Override
     public void persist(T entity) {

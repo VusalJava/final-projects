@@ -21,11 +21,21 @@ public class ReviewRestController {
     private final ReviewMapper reviewMapper;
     private final ReviewService reviewService;
 
-    //сохраняет в БД как новые review сущности, так и прошедшие/не прошедшие модерацию
     @PostMapping("/save")
-    public void createShop(@RequestBody ReviewDto reviewDto) {
-       reviewService.saveNewReview(reviewMapper.toEntity(reviewDto));
+    public void saveReview(@RequestBody ReviewDto reviewDto) {
+        reviewService.saveReview(reviewMapper.toEntity(reviewDto));
     }
+
+    @PostMapping("/update")
+    public void updateReview(@RequestBody ReviewDto reviewDto) {
+        reviewService.updateReview(reviewMapper.toEntity(reviewDto));
+    }
+
+    @PostMapping("/delete")
+    public void updateReview(@RequestBody Long id) {
+        reviewService.deleteReview(id);
+    }
+
     //возвращает отзывы по выбранному item, кроме не прошедших модерацию
     @PostMapping("/show")
     public ResponseEntity<List<ReviewDto>> getAllReviews(@RequestBody Long id) {
@@ -35,7 +45,7 @@ public class ReviewRestController {
         return ResponseEntity.ok(reviewMapper.toDtoList(reviewList));
     }
 
-    //возвращает все немодерированные отзывы по всем items
+    //возвращает все отзывы,которые ещё не проходили модерацию по всем items сразу
     @PostMapping("/show_not_moderated")
     public ResponseEntity<List<ReviewDto>> getAllNotModeratedReviews() {
 

@@ -2,15 +2,29 @@ package com.amr.project.dao.impl;
 
 import com.amr.project.dao.abstracts.ReviewReadWriteDao;
 import com.amr.project.model.entity.Review;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class ReviewReadWriteDaoImpl extends ReadWriteDaoImpl<Review, Long> implements ReviewReadWriteDao {
 
     @Override
     public void saveReview(Review review) {
-        em.persist(review);
+      persist(review);
     }
+
+    @Override
+    public void updateReview(Review review) {
+        update(review);
+    }
+
+    @Override
+    public void deleteReview(Long id) {
+        deleteByIdCascadeIgnore(id);
+    }
+
+
 
     @Override
     public List<Review> getAllReviewsById(Long id) {
