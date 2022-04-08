@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 logs
+ToDo.md
+src/main/resources/application.properties
+src/test/resources/datasets/shops.xml
 
 ### STS ###
 .apt_generated
