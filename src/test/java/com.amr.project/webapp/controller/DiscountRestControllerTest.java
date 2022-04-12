@@ -92,5 +92,4 @@ public class DiscountRestControllerTest {
                         .content(objectMapper.writeValueAsString(discounts.get(0))))
                 .andExpect(status().isOk());
     }
-
 }
