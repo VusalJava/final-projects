@@ -2,6 +2,7 @@ package com.amr.project.webapp.controller;
 
 import com.amr.project.model.entity.Shop;
 import com.amr.project.service.abstracts.ShopService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,9 +19,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,7 +37,7 @@ public class ShopRestControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private ShopRestController controller;
+    private ObjectMapper objectMapper;
 
     @MockBean
     private ShopService shopService;
@@ -44,9 +47,11 @@ public class ShopRestControllerTest {
     @Before
     public void initShops() {
         shopList = new ArrayList<>();
+
         shopList.add(new Shop(1L, null, "clothes@mail.com", "89177777777",
                 "clothes", 11L, null, null, 111, 111, null,
                 null, false, true, "checking", false));
+
         shopList.add(new Shop(2L, null, "cars@mail.com", "89111111111",
                 "cars", 22L, null, null, 222, 222, null,
                 null, false, true, "checking", false));
@@ -55,7 +60,7 @@ public class ShopRestControllerTest {
 
     @Test
     public void test() throws Exception {
-        assertThat(controller).isNotNull();
+        assertThat(mockMvc).isNotNull();
     }
 
     @Test
@@ -78,6 +83,30 @@ public class ShopRestControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.phone", is(shopList.get(0).getPhone())));
 
+    }
+
+    @Test
+    public void createShopTest() throws Exception {
+        when(shopService.persist(shopList.get(0))).thenReturn(shopList.get(0));
+
+        mockMvc.perform(post("/shop")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(shopList.get(0))))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("$[0].phone", is(shopList.get(0).getPhone())));
+
+        verify(shopService).persist(any(Shop.class));
+
+    }
+
+    @Test
+    public void deleteShopTest() throws Exception {
+        mockMvc.perform(delete("/shop/1/delete")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(shopList)))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
 

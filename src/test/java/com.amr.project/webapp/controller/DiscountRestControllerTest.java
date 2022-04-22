@@ -34,8 +34,10 @@ public class DiscountRestControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
     @Autowired
     ObjectMapper objectMapper;
+
     @MockBean
     DiscountService discountService;
 
